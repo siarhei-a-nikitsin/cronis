@@ -15,19 +15,23 @@ const check = (str) => {
 
   // 2 - algorithm
   const values = Object.values(hash);
-  const oddCount = values.filter(x => oddNumber(x));
 
-  if(oddCount.length > 1){
-    return false;
-  }
+  let oddCount = 0;
 
-  if(values.filter(x => (!oddCount.length || x !== oddCount[0]) && oddNumber(x)).length > 0){
-    return false;
+  for(let i = 0; i < values.length; i++) {
+    const cur = values[i];
+
+    if(oddNumber(cur)){
+      oddCount++;
+      if(oddCount > 1){
+        return false;
+      }
+    }
   }
 
   return true;
 };
 
 // test
-const r = check('шашаша');
+const r = check('шааллшаш');
 console.log(r);
